@@ -10,6 +10,7 @@ export const Answer = ({ answer, realizarVoto }) => (
       <img src={meMusta} alt="" width="50" height="50" onClick={() => realizarVoto(answer, 1)}  />
       <img src={noMeGusta} alt="" width="50" height="50" onClick={() => realizarVoto(answer, -1)}/>
       </span>
+      <span className='float-end'>{answer.position} usuarios le han dado me gusta</span>
     </p>
   </aside>
 )

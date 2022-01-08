@@ -13,12 +13,13 @@ const SingleQuestionPage = ({
   question,
   hasErrors,
   loading,
-  userId
+  userId,
+  redirect
 }) => {
   const { id } = match.params
   useEffect(() => {
     dispatch(fetchQuestion(id))
-  }, [dispatch, id])
+  }, [dispatch, id, redirect])
 
   const renderQuestion = () => {
     if (loading.question) return <p>Loading question...</p>
@@ -28,11 +29,12 @@ const SingleQuestionPage = ({
   }
 
   const realizarVoto = (answer, voto) => {
-    let data;
-    data.userId = answer.userId;
-    data.questionId = answer.questionId;
-    data.answerId = answer.id;
-    data.voto = voto;
+    let data = {
+      userId: answer.userId,
+      questionId: answer.questionId,
+      answerId: answer.id,
+      voto: voto
+    };
     dispatch(votar(data))
   }
   
@@ -62,7 +64,8 @@ const mapStateToProps = state => ({
   question: state.question.question,
   loading: state.question.loading,
   hasErrors: state.question.hasErrors,
-  userId: state.auth.uid
+  userId: state.auth.uid,
+  redirect: state.question.redirect
 })
 
 export default connect(mapStateToProps)(SingleQuestionPage)
