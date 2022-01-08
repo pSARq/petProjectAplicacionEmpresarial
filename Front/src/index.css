@@ -87,11 +87,16 @@ textarea {
   font-size: 1.5rem;
 }
 
-.answer {
+.answers {
   background: #f0f0f0;
   border-radius: 4px;
-  padding: 1rem 1.5rem;
+  padding: 1% 1% 2% 2%;
   margin: 1rem 0;
+}
+
+.answer {
+  width: 90%;
+  margin-right: 2%;
 }
 
 .button {
@@ -119,6 +124,18 @@ textarea {
 }
 
 img {
-  margin: 0px 10px;
+  margin: 0px 5px;
   cursor: pointer;
+}
+
+.parte-votacion {
+  text-align: right;
+}
+
+.parte-votacion img {
+  margin-top: 2px;
+}
+
+.posicion{
+  padding: 4% 0;
 }
