@@ -8,5 +8,5 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public interface VotoRepository extends ReactiveCrudRepository<Voto, String> {
-    Mono<Voto> findByQuestionIdAndAnswerIdAndUserId(String questionId, String answerId, String userId);
+    Mono<Voto> findByQuestionIdAndUserId(String questionId, String userId);
 }

@@ -19,6 +19,7 @@ class UseCaseVotarTest {
     VotoRepository votoRepository;
     AnswerRepository answerRepository;
     UseCaseVotar useCaseVotar;
+    UseCaseDeleteVoto useCaseDeleteVoto;
 
 
     @BeforeEach
@@ -26,7 +27,7 @@ class UseCaseVotarTest {
         MapperUtil mapperUtils = new MapperUtil();
         votoRepository = mock(VotoRepository.class);
         answerRepository = mock(AnswerRepository.class);
-        useCaseVotar = new UseCaseVotar(votoRepository, answerRepository, mapperUtils);
+        useCaseVotar = new UseCaseVotar(votoRepository, answerRepository, mapperUtils, useCaseDeleteVoto);
     }
 
     @Test
@@ -53,7 +54,7 @@ class UseCaseVotarTest {
         when(answerRepository.findById(voto.getAnswerId())).thenReturn(Mono.just(answer));
         when(answerRepository.save(any())).thenReturn(Mono.just(answer));
 
-        when(votoRepository.findByQuestionIdAndAnswerIdAndUserId(voto.getQuestionId(), voto.getAnswerId(), voto.getUserId()))
+        when(votoRepository.findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId()))
                 .thenReturn(Mono.empty());
         when(votoRepository.save(any())).thenReturn(Mono.just(voto));
 
@@ -68,6 +69,6 @@ class UseCaseVotarTest {
         verify(answerRepository).save(any());
         verify(answerRepository).findById(voto.getAnswerId());
         verify(votoRepository).save(any());
-        verify(votoRepository).findByQuestionIdAndAnswerIdAndUserId(voto.getQuestionId(), voto.getAnswerId(), voto.getUserId());
+        verify(votoRepository).findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId());
     }
 }

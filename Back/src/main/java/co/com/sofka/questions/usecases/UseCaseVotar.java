@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Service
 @Validated
 public class UseCaseVotar implements SaveVoto {
@@ -18,32 +20,44 @@ public class UseCaseVotar implements SaveVoto {
     private final VotoRepository votoRepository;
     private final AnswerRepository answerRepository;
     private final MapperUtil mapperUtil;
+    private final UseCaseDeleteVoto useCaseDeleteVoto;
 
-    public UseCaseVotar(VotoRepository votoRepository, AnswerRepository answerRepository, MapperUtil mapperUtil) {
+    public UseCaseVotar(VotoRepository votoRepository, AnswerRepository answerRepository, MapperUtil mapperUtil, UseCaseDeleteVoto useCaseDeleteVoto) {
         this.votoRepository = votoRepository;
         this.answerRepository = answerRepository;
         this.mapperUtil = mapperUtil;
+        this.useCaseDeleteVoto = useCaseDeleteVoto;
     }
 
     @Override
     public Mono<String> apply(VotoDTO votoDTO) {
+        Objects.requireNonNull(votoDTO);
         Voto voto = mapperUtil.mapperToVoto().apply(votoDTO);
-        return votoRepository.findByQuestionIdAndAnswerIdAndUserId(voto.getQuestionId(), voto.getAnswerId(), voto.getUserId())
-                .flatMap(voto1 -> Mono.just("Ya voto"))
+        return votoRepository.findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId())
+                .flatMap(voto1 -> useCaseDeleteVoto.apply(voto1)
+                        .then(guardarVoto(voto)))
                 .switchIfEmpty(guardarVoto(voto));
     }
 
     private Mono<String> guardarVoto(Voto voto) {
         return votoRepository.save(voto)
-                    .map(Voto::getId)
                 .then(guardarPuestoPregunta(voto));
     }
 
     private Mono<String> guardarPuestoPregunta(Voto voto) {
         return answerRepository.findById(voto.getAnswerId())
                 .flatMap(answer -> {
-                    answer.setPosition(answer.getPosition() != null ? answer.getPosition() + voto.getVoto()
+                    //asigna la posicion según el voto
+                    answer.setPosition(answer.getPosition() != null
+                            ? answer.getPosition() + voto.getVoto()
                             : voto.getVoto());
+
+                    //valida que no quede menor a 0
+                    if (answer.getPosition() < 0) {
+                        answer.setPosition(0);
+                    }
+
+                    //guarda y retorna id del voto
                     return answerRepository.save(answer)
                             .map(Answer::getId);
                 });
