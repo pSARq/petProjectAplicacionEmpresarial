@@ -20,6 +20,8 @@ import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
 import Footer from "./components/Footer"
 
+
+
 firebase.initializeApp({
   apiKey: "AIzaSyCTySyvuIDPg7RWF6ceuuwC2t3BEiAK38o",
   authDomain: "question-app-demo.firebaseapp.com",
@@ -40,6 +42,7 @@ const App = ({ dispatch }) => {
     <Router>
       {user ?
         <>
+        
           <PrivateNavbar />
           <Switch>
             <Route exact path="/" component={() => {

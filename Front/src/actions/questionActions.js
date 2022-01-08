@@ -1,4 +1,4 @@
-const URL_BASE = 'https://back-aplicacion-empresarial.herokuapp.com';
+const URL_BASE = 'https://back-aplicacion-empresarial.herokuapp.com';   
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
@@ -111,6 +111,27 @@ export function postAnswer(answer) {
                 }
             )
             dispatch(success({redirect: `/question/${answer.questionId}`}));
+        } catch (error) {
+            dispatch(failure())
+        }
+    }
+}
+
+export function votar(voto) {
+    return async dispatch => {
+        dispatch(loading())
+        try {
+            await fetch(`${URL_BASE}/votar`,
+                {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(voto)
+                }
+            )
+            dispatch(success({redirect: `/question/${voto.getQuestionId}`}));
         } catch (error) {
             dispatch(failure())
         }

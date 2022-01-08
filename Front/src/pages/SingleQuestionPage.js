@@ -28,9 +28,11 @@ const SingleQuestionPage = ({
   }
 
   const renderAnswers = () => {
-    return (question.answers && question.answers.length) ? question.answers.map(answer => (
-      <Answer key={answer.id} answer={answer} />
-    )) : <p>Empty answer!</p>;
+    return(
+      (question.answers && question.answers.length) ? question.answers.map(answer => (
+        <Answer key={answer.id} answer={answer} />
+      )) : <p>Empty answer!</p>
+    ) 
   }
 
   return (
