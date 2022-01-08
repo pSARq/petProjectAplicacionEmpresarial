@@ -10,7 +10,7 @@ const FormPage = ({ dispatch, loading, redirect, match,hasErrors, question, user
     const { id } = match.params
     const history = useHistory();
 
-    const onSubmit = data => {
+    const onSubmit = (data) => {
         data.userId =  userId;
         data.questionId = id;
         dispatch(postAnswer(data));

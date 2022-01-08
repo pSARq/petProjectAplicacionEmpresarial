@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchQuestion } from '../actions/questionActions'
+import { fetchQuestion, votar } from '../actions/questionActions'
 
 import { Question } from '../components/Question'
 import { Answer } from '../components/Answer'
@@ -27,10 +27,20 @@ const SingleQuestionPage = ({
     return <Question question={question} />
   }
 
+  const realizarVoto = (answer, voto) => {
+    let data;
+    data.userId = answer.userId;
+    data.questionId = answer.questionId;
+    data.answerId = answer.id;
+    data.voto = voto;
+    dispatch(votar(data))
+  }
+  
+
   const renderAnswers = () => {
     return(
       (question.answers && question.answers.length) ? question.answers.map(answer => (
-        <Answer key={answer.id} answer={answer} />
+        <Answer key={answer.id} answer={answer} realizarVoto={realizarVoto} />
       )) : <p>Empty answer!</p>
     ) 
   }
