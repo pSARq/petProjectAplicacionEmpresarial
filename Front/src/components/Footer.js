@@ -5,7 +5,8 @@ export default function Footer() {
   return (
     <div className="footer">
         <hr></hr>
-      <center>Hola</center>
+        <center>&copy; 2022 Santiago Almendra.</center>
+        <center> Aplicación para publicar preguntas y comentar respuestas</center>
     </div>
   );
 }
