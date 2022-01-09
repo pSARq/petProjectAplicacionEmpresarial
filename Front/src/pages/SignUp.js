@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Google from "../images/google.png";
 import { useForm } from "react-hook-form";
-import { signInWithGoogle, signin, logoutApp, auth } from "../helpers/auth";
+import { signInWithGoogle, signup, logoutApp, auth } from "../helpers/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { login, logout } from "../actions/authActions";
 import { connect } from "react-redux";
 
-const HomePage = ({ dispatch }) => {
+const SignUp = ({ dispatch }) => {
   const {
     register,
     handleSubmit,
@@ -16,7 +16,7 @@ const HomePage = ({ dispatch }) => {
   const [user] = useAuthState(auth);
 
   const onSubmit = (data) => {
-    signin(data.email, data.password);
+    signup(data.email, data.password);
     dispatch(login(user.email, user.uid));
   };
 
@@ -27,21 +27,13 @@ const HomePage = ({ dispatch }) => {
 
   return (
     <div>
-      {user ? 
-      (
-        <div className="mt-5 text-center">
-          <button className="btn btn-outline-danger" onClick={onLogout}>
-            logout
-          </button>
-        </div>
-      ) : (
         <form
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
           className="container col-5 text-center background-login mt-4"
         >
-          <h1> Login to question application </h1>
-          <p>welcome to the question and answer app.</p>
+          <h1> Sign up to question application </h1>
+          <p>Fill un the form below to create an account</p>
           <div className="mb-3">
             <input
               className="form-control"
@@ -76,21 +68,20 @@ const HomePage = ({ dispatch }) => {
 
           <div className="mb-3">
             <button type="submit" className="btn btn-outline-primary">
-              Login
+              Sign up
             </button>
           </div>
 
           <div className="mb-2">
             <button onClick={signInWithGoogle} type="button" className="btn btn-outline-success">
-              <img src={Google} width={30} /> Login with Google
+              <img src={Google} width={30} /> Sign up with Google
             </button>
           </div>
           <hr />
           <p>
-            Don't have an account? <Link to="/signup">Sign up</Link>
+          Already have a account? <Link to="/">Login</Link>
           </p>
         </form>
-      )}
     </div>
   );
 };
@@ -101,4 +92,4 @@ const mapStateToProps = (state) => ({
   uid: state.auth.uid,
 });
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(SignUp);

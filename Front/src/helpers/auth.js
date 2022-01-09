@@ -3,12 +3,12 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 firebase.initializeApp({
-    apiKey: "AIzaSyCTySyvuIDPg7RWF6ceuuwC2t3BEiAK38o",
-    authDomain: "question-app-demo.firebaseapp.com",
-    projectId: "question-app-demo",
-    storageBucket: "question-app-demo.appspot.com",
-    messagingSenderId: "1038673531562",
-    appId: "1:1038673531562:web:da90421f639a3115dcf6d3",
+    apiKey: "AIzaSyA3ZbgfvHyDuFyApJ3BkDN39TROXpQ1rdg",
+    authDomain: "front-aplicacion-empresarial.firebaseapp.com",
+    projectId: "front-aplicacion-empresarial",
+    storageBucket: "front-aplicacion-empresarial.appspot.com",
+    messagingSenderId: "361174735029",
+    appId: "1:361174735029:web:d0386ac3c3ee4c1afb06fc"
 });
   
 export const auth = firebase.auth();

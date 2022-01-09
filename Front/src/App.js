@@ -22,6 +22,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Footer from "./components/Footer"
 
 import { signInWithGoogle, logout, auth } from './helpers/auth';
+import SignUp from './pages/SignUp';
 
 
 
@@ -67,6 +68,7 @@ const App = ({ dispatch }) => {
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
+            <Route exact path="/signup" component={SignUp} />
             <Redirect to="/" />
           </Switch>
         </>
