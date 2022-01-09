@@ -27,7 +27,7 @@ const FormPage = ({ dispatch, loading, redirect, userId }) => {
 
                 <div>
                     <label for="type">Type</label>
-                    <select {...register("type")} id="">
+                    <select {...register("type")} id="type">
                         <option value="OPEN (LONG OPEN BOX)">OPEN (LONG OPEN BOX)</option>
                         <option value="OPINION (SHORT OPEN BOX)">OPINION (SHORT OPEN BOX)</option>
                         <option value="WITH RESULT (OPEN BOX WITH LINK)">WITH RESULT (OPEN BOX WITH LINK)</option>

@@ -108,6 +108,10 @@ textarea {
   padding: 0.75rem 1.5rem;
 }
 
+.button:hover{
+  color: white;
+}
+
 .right {
   float: right;
 }
@@ -133,9 +137,23 @@ img {
 }
 
 .parte-votacion img {
+  margin: 1px;
   margin-top: 2px;
+}
+
+.parte-votacion img:hover{
+  width: 36px;
+  height: 36px;
+}
+
+.parte-votacion img:active{
+  filter: hue-rotate(120deg);
 }
 
 .posicion{
   padding: 4% 0;
+}
+
+.background-login{
+  background-color: rgba(56, 69, 144, 0.24);
 }
