@@ -48,7 +48,7 @@ public class UseCaseVotar implements SaveVoto {
         return answerRepository.findById(voto.getAnswerId())
                 .flatMap(answer -> {
                     //asigna la posicion según el voto
-                    answer.setPosition(answer.getPosition() != null
+                    answer.setPosition(answer.getPosition() != 0
                             ? answer.getPosition() + voto.getVoto()
                             : voto.getVoto());
 

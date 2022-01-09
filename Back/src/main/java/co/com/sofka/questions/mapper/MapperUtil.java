@@ -2,9 +2,11 @@ package co.com.sofka.questions.mapper;
 
 import co.com.sofka.questions.collections.Answer;
 import co.com.sofka.questions.collections.Question;
+import co.com.sofka.questions.collections.User;
 import co.com.sofka.questions.collections.Voto;
 import co.com.sofka.questions.model.AnswerDTO;
 import co.com.sofka.questions.model.QuestionDTO;
+import co.com.sofka.questions.model.UserDTO;
 import co.com.sofka.questions.model.VotoDTO;
 import org.springframework.stereotype.Component;
 
@@ -75,6 +77,28 @@ public class MapperUtil {
                 entity.getQuestionId(),
                 entity.getAnswerId(),
                 entity.getVoto()
+        );
+    }
+
+    public Function<UserDTO, User> mapperToUser(){
+        return updateUser -> {
+            User user = new User();
+            user.setId(updateUser.getId());
+            user.setUserId(updateUser.getUserId());
+            user.setName(updateUser.getName());
+            user.setLastName(updateUser.getLastName());
+            user.setEmail(updateUser.getEmail());
+            return user;
+        };
+    }
+
+    public Function<User, UserDTO> mapEntityToUser(){
+        return entity -> new UserDTO(
+                entity.getId(),
+                entity.getUserId(),
+                entity.getName(),
+                entity.getLastName(),
+                entity.getEmail()
         );
     }
 }
