@@ -23,34 +23,12 @@ export function getInfoUser(userId) {
         try {
             const response = await fetch(`${URL_BASE}/getInfoUser/${userId}`)
             const data = await response.json()
-            dispatch(success({ infoUser: data }))
+            dispatch(success({ infoUser: data, redirect: `/profile` }))
         } catch (error) {
             dispatch(failure())
         }
     }
 }
-
-// export function saveInforUser(infoUser) {
-//     return async dispatch => {
-//         dispatch(loading())
-//         try {
-//             const response = await fetch(`${URL_BASE}/saveInfoUser`,
-//                 {
-//                     method: 'POST',
-//                     mode: 'cors',
-//                     headers: {
-//                         'Content-Type': 'application/json'
-//                     },
-//                     body: JSON.stringify(infoUser)
-//                 }
-//             )
-//             const id = await response.text()
-//             dispatch(success());
-//         } catch (error) {
-//             dispatch(failure())
-//         }
-//     }
-// }
 
 export function updateInfoUser(infoUser) {
     return async dispatch => {
@@ -67,9 +45,9 @@ export function updateInfoUser(infoUser) {
                 }
             )
             const id = await response.text()
-            dispatch(success());
+            dispatch(success({successful: "Cambio realizado con éxito"}));
         } catch (error) {
-            dispatch(failure())
+            dispatch(failure({error: "A ocurrido un problema"}))
         }
     }
 }

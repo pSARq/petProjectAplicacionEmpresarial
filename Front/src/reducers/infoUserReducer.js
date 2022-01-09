@@ -2,8 +2,10 @@ import * as actions from '../actions/infoUser'
 
 export const initialState = {
   loading: false,
-  hasErrors: false,
+  hasErrors: null,
   infoUser: {},
+  redirect: null,
+  successfull: null
 }
 
 export default function userReducer(state = initialState, action) {
@@ -11,9 +13,9 @@ export default function userReducer(state = initialState, action) {
     case actions.LOADING:
       return { ...state, loading: true }
     case actions.LOADED_SUCCESS:
-      return { ...state, ...action.payload, loading: false, hasErrors: false }
+      return { ...state, ...action.payload, loading: false, hasErrors: null }
     case actions.LOADED_FAILURE:
-      return { ...state, loading: false, hasErrors: true }
+      return { ...state, hasErrors: action.payload, loading: false, successfull: null }
     default:
       return state
   }
