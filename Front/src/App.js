@@ -32,6 +32,7 @@ const App = ({ dispatch }) => {
           <PrivateNavbar />
           <Switch>
             <Route exact path="/" component={HomePage}></Route>
+            <Route exact path="/question/profile" component={Profile} />
             <Route exact path="/questions" component={QuestionsPage} />
             <Route exact path="/question/:id" component={SingleQuestionPage} />
             <Route exact path="/list" component={OwnerQuestionsPage} />

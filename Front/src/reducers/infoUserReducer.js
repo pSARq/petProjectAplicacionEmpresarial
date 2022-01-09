@@ -6,7 +6,7 @@ export const initialState = {
   infoUser: {},
 }
 
-export default function questionsReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case actions.LOADING:
       return { ...state, loading: true }

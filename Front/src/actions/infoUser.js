@@ -30,27 +30,27 @@ export function getInfoUser(userId) {
     }
 }
 
-export function saveInforUser(infoUser) {
-    return async dispatch => {
-        dispatch(loading())
-        try {
-            const response = await fetch(`${URL_BASE}/saveInfoUser`,
-                {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(infoUser)
-                }
-            )
-            const id = await response.text()
-            dispatch(success());
-        } catch (error) {
-            dispatch(failure())
-        }
-    }
-}
+// export function saveInforUser(infoUser) {
+//     return async dispatch => {
+//         dispatch(loading())
+//         try {
+//             const response = await fetch(`${URL_BASE}/saveInfoUser`,
+//                 {
+//                     method: 'POST',
+//                     mode: 'cors',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify(infoUser)
+//                 }
+//             )
+//             const id = await response.text()
+//             dispatch(success());
+//         } catch (error) {
+//             dispatch(failure())
+//         }
+//     }
+// }
 
 export function updateInfoUser(infoUser) {
     return async dispatch => {
