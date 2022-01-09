@@ -1,14 +1,6 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/firestore";
-// import "firebase/compat/auth";
-// import { login, logout } from './actions/authActions';
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+
 import { login} from './actions/authActions';
 
 import { PublicNavbar, PrivateNavbar } from './components/Navbar'
@@ -21,21 +13,8 @@ import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
 import Footer from "./components/Footer"
 
-import { signInWithGoogle, logout, auth } from './helpers/auth';
+import { auth } from './helpers/auth';
 import SignUp from './pages/SignUp';
-
-
-
-// firebase.initializeApp({
-//   apiKey: "AIzaSyCTySyvuIDPg7RWF6ceuuwC2t3BEiAK38o",
-//   authDomain: "question-app-demo.firebaseapp.com",
-//   projectId: "question-app-demo",
-//   storageBucket: "question-app-demo.appspot.com",
-//   messagingSenderId: "1038673531562",
-//   appId: "1:1038673531562:web:da90421f639a3115dcf6d3"
-// });
-
-// const auth = firebase.auth();
 
 
 
@@ -77,31 +56,5 @@ const App = ({ dispatch }) => {
     </Router>
   )
 }
-
-
-// function SignIn() {
-//   const signInWithGoogle = () => {
-//     const provider = new firebase.auth.GoogleAuthProvider();
-//     auth.signInWithPopup(provider);
-//   };
-//   return <button className="button right" onClick={signInWithGoogle}>Sign in with google</button>;
-// }
-
-// function SignOut({ dispatch }) {
-//   return (
-//     auth.currentUser && (
-//       <button
-//         className="button right"
-//         onClick={() => {
-//           dispatch(logout())
-//           auth.signOut();
-//         }}
-//       >
-//         Sign out
-//       </button>
-//     )
-//   );
-// }
-
 
 export default App

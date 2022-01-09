@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Google from "../images/google.png";
 import { useForm } from "react-hook-form";
@@ -8,16 +8,17 @@ import { login, logout } from "../actions/authActions";
 import { connect } from "react-redux";
 
 const SignUp = ({ dispatch }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }} = useForm();
   const [user] = useAuthState(auth);
+  const [errorLogin, setErrorLogin] = useState("")
 
-  const onSubmit = (data) => {
-    signup(data.email, data.password);
-    dispatch(login(user.email, user.uid));
+  const onSubmit = async (data) => {
+    try {
+      await signup(data.email, data.password);
+      dispatch(login(user.email, user.uid));
+    } catch (error) {
+      setErrorLogin(error.message)
+    }
   };
 
   const onLogout = () => {
@@ -65,6 +66,9 @@ const SignUp = ({ dispatch }) => {
             />
             <div className="text-danger">{errors?.password?.message}</div>
           </div>
+
+          {errorLogin && 
+          <div>{errorLogin}</div>}
 
           <div className="mb-3">
             <button type="submit" className="btn btn-outline-primary">
