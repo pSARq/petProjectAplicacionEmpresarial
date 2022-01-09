@@ -39,7 +39,7 @@ const SignUp = ({ dispatch }) => {
               {...register("email", {
                 required: {
                   value: true,
-                  message: "required",
+                  message: "Required",
                 },
               })}
             />
@@ -55,7 +55,7 @@ const SignUp = ({ dispatch }) => {
               {...register("password", {
                 required: {
                   value: true,
-                  message: "required",
+                  message: "Required",
                 },
               })}
             />

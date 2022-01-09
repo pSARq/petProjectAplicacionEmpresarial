@@ -52,7 +52,7 @@ const HomePage = ({ dispatch }) => {
               {...register("email", {
                 required: {
                   value: true,
-                  message: "required",
+                  message: "Required",
                 },
               })}
             />
@@ -68,7 +68,7 @@ const HomePage = ({ dispatch }) => {
               {...register("password", {
                 required: {
                   value: true,
-                  message: "required",
+                  message: "Required",
                 },
               })}
             />

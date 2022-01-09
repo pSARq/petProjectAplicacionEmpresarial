@@ -2,19 +2,19 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 import { login} from './actions/authActions';
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import Footer from "./components/Footer"
+import { auth } from './helpers/firebase';
 import { PublicNavbar, PrivateNavbar } from './components/Navbar'
+
 import HomePage from './pages/HomePage'
 import SingleQuestionPage from './pages/SingleQuestionPage'
 import QuestionsPage from './pages/QuestionsPage'
 import QuestionFormPage from './pages/QuestionFormPage'
 import AnswerFormPage from './pages/AnswerFormPage'
 import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
-import { useAuthState } from "react-firebase-hooks/auth";
-import Footer from "./components/Footer"
-
-import { auth } from './helpers/firebase';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
 
 
 
@@ -37,6 +37,7 @@ const App = ({ dispatch }) => {
             <Route exact path="/list" component={OwnerQuestionsPage} />
             <Route exact path="/answer/:id" component={AnswerFormPage} />
             <Route exact path="/new" component={QuestionFormPage} />
+            <Route exact path="/profile" component={Profile} />
             <Redirect to="/" />
           </Switch>
         </> :
