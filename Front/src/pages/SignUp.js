@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Google from "../images/google.png";
 import { useForm } from "react-hook-form";
-import { signInWithGoogle, signup, logoutApp, auth } from "../helpers/auth";
+import { signInWithGoogle, signup, auth } from "../helpers/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { login, logout } from "../actions/authActions";
+import { login } from "../actions/authActions";
 import { connect } from "react-redux";
 
 const SignUp = ({ dispatch }) => {
@@ -19,11 +19,6 @@ const SignUp = ({ dispatch }) => {
     } catch (error) {
       setErrorLogin(error.message)
     }
-  };
-
-  const onLogout = () => {
-    logoutApp();
-    dispatch(logout);
   };
 
   return (

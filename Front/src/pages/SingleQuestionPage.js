@@ -6,6 +6,9 @@ import { fetchQuestion, votar } from '../actions/questionActions'
 import { Question } from '../components/Question'
 import { Answer } from '../components/Answer'
 import { Link } from 'react-router-dom'
+import { auth } from "../helpers/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 const SingleQuestionPage = ({
   match,
@@ -17,6 +20,8 @@ const SingleQuestionPage = ({
   redirect
 }) => {
   const { id } = match.params
+  const [user] = useAuthState(auth);
+
   useEffect(() => {
     dispatch(fetchQuestion(id))
   }, [dispatch, id, redirect])
@@ -30,7 +35,7 @@ const SingleQuestionPage = ({
 
   const realizarVoto = (answer, voto) => {
     let data = {
-      userId: answer.userId,
+      userId: user.uid,
       questionId: answer.questionId,
       answerId: answer.id,
       voto: voto

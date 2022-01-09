@@ -13,7 +13,7 @@ import OwnerQuestionsPage from './pages/OwnerQuestionsPage'
 import { useAuthState } from "react-firebase-hooks/auth";
 import Footer from "./components/Footer"
 
-import { auth } from './helpers/auth';
+import { auth } from './helpers/firebase';
 import SignUp from './pages/SignUp';
 
 

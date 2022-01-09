@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import Google from "../images/google.png";
 import { useForm } from "react-hook-form";
-import { signInWithGoogle, signin, logoutApp, auth } from "../helpers/auth";
+import { signInWithGoogle, signin, logoutApp, auth } from "../helpers/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { login, logout } from "../actions/authActions";
 import { connect } from "react-redux";
