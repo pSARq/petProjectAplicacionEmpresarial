@@ -11,24 +11,21 @@ public class UserDTO {
     private String name;
     private String lastName;
     @NotBlank(message = "El email no puede ser nulo")
-    private String email;
 
     public UserDTO() {
     }
 
-    public UserDTO(String id, @NotBlank String userId, String name, String lastName, @NotBlank String email) {
+    public UserDTO(String id, @NotBlank String userId, String name, String lastName) {
         this.id = id;
         this.userId = userId;
         this.name = name;
         this.lastName = lastName;
-        this.email = email;
     }
 
-    public UserDTO(@NotBlank String userId, String name, String lastName, @NotBlank String email) {
+    public UserDTO(@NotBlank String userId, String name, String lastName) {
         this.userId = userId;
         this.name = name;
         this.lastName = lastName;
-        this.email = email;
     }
 
     public String getId() {
@@ -63,13 +60,6 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -90,7 +80,6 @@ public class UserDTO {
                 "userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
                 '}';
     }
 }

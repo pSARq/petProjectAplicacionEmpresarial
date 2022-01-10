@@ -30,9 +30,9 @@ public class UseCaseDeleteVoto implements Function<Voto, Mono<String>> {
     private Mono<String> deshacerVoto(Voto voto) {
         return answerRepository.findById(voto.getAnswerId())
                 .flatMap(answer -> {
-                    System.out.println("entre a deshacer voto");
-                    if (voto.getVoto() == 1){
-                        answer.setPosition(answer.getPosition() -1);
+
+                    if (voto.getVoto() == 1) {
+                        answer.setPosition(answer.getPosition() - 1);
                     }
 
                     //guarda y retorna id del voto

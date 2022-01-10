@@ -16,7 +16,7 @@ public class RouterUpdateInfoUser {
 
     @Bean
     public RouterFunction<ServerResponse> updateInfoUser(UseCaseUpdateInfoUser user){
-        return route(PUT("/updateInfoUser").and(accept(MediaType.APPLICATION_JSON)),
+        return route(POST("/updateInfoUser").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(UserDTO.class)
                         .flatMap(userDTO -> user.apply(userDTO)
                                 .flatMap(result -> ServerResponse.ok()

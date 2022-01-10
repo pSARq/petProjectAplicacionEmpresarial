@@ -11,17 +11,22 @@ p {
 
 nav {
   display: flex;
-  padding: 2rem 0;
-  background: #111;
+  padding: 1rem 0;
+  background: rgba(204, 204, 204, 0.39);
+}
+
+nav:hover{
+  background: rgba(204, 204, 204, 0.466);
 }
 
 nav section {
+  margin-top: 10px;
   width: 100%;
 }
 
 nav a {
   font-weight: 700;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 4px;
 }
 
@@ -29,12 +34,13 @@ nav a:first-of-type {
   margin-left: -1.5rem;
 }
 
-nav a:hover {
-  background: #222;
+nav section a:hover {
+  color: rgb(89, 119, 149);
+  background: rgba(212, 131, 131, 0.424);
 }
 
 a {
-  color: #ea3546;
+  color: firebrick;
   text-decoration: none;
 }
 
@@ -101,15 +107,16 @@ textarea {
 
 .button {
   display: inline-block;
-  background: #ea3546;
-  color: white;
+  background: #33b2bbb0;
+  color: rgb(47, 42, 42);
   border-radius: 4px;
   font-weight: 700;
   padding: 0.75rem 1.5rem;
 }
 
 .button:hover{
-  color: white;
+  background: #33b2bbda;
+  color: rgb(0, 0, 0);
 }
 
 .right {
@@ -125,11 +132,6 @@ textarea {
 
 .footer hr {
   color: rgb(122, 118, 118);
-}
-
-img {
-  margin: 0px 5px;
-  cursor: pointer;
 }
 
 .parte-votacion {
@@ -156,4 +158,13 @@ img {
 
 .background-login{
   background-color: rgba(56, 69, 144, 0.24);
+}
+
+.logo{
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+.logo:hover{
+  background: none;
 }

@@ -87,7 +87,6 @@ public class MapperUtil {
             user.setUserId(updateUser.getUserId());
             user.setName(updateUser.getName());
             user.setLastName(updateUser.getLastName());
-            user.setEmail(updateUser.getEmail());
             return user;
         };
     }
@@ -97,8 +96,7 @@ public class MapperUtil {
                 entity.getId(),
                 entity.getUserId(),
                 entity.getName(),
-                entity.getLastName(),
-                entity.getEmail()
+                entity.getLastName()
         );
     }
 }

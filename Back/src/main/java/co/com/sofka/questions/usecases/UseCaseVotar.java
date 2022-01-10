@@ -35,16 +35,16 @@ public class UseCaseVotar implements SaveVoto {
         Voto voto = mapperUtil.mapperToVoto().apply(votoDTO);
         return votoRepository.findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId())
                 .flatMap(voto1 -> useCaseDeleteVoto.apply(voto1)
-                        .then(guardarVoto(voto)))
-                .switchIfEmpty(guardarVoto(voto));
+                        .then(guardarVoto(voto, voto1)))
+                .switchIfEmpty(guardarVoto(voto, voto));
     }
 
-    private Mono<String> guardarVoto(Voto voto) {
+    private Mono<String> guardarVoto(Voto voto, Voto voto1) {
         return votoRepository.save(voto)
-                .then(guardarPuestoPregunta(voto));
+                .then(guardarPuestoPregunta(voto, voto1));
     }
 
-    private Mono<String> guardarPuestoPregunta(Voto voto) {
+    private Mono<String> guardarPuestoPregunta(Voto voto, Voto voto1) {
         return answerRepository.findById(voto.getAnswerId())
                 .flatMap(answer -> {
                     //asigna la posicion según el voto

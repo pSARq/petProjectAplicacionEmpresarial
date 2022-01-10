@@ -1,8 +1,6 @@
 package co.com.sofka.questions.routers;
 
-import co.com.sofka.questions.model.QuestionDTO;
 import co.com.sofka.questions.model.VotoDTO;
-import co.com.sofka.questions.usecases.UseCaseCreate;
 import co.com.sofka.questions.usecases.UseCaseVotar;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

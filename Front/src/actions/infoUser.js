@@ -1,4 +1,6 @@
-const URL_BASE = 'https://back-aplicacion-empresarial.herokuapp.com';   
+// const URL_BASE = 'https://back-aplicacion-empresarial.herokuapp.com';
+const URL_BASE = 'http://localhost:8080'  
+
 
 export const LOADING = 'LOADING'
 export const LOADED_SUCCESS = 'LOADED_SUCCESS'
@@ -36,7 +38,7 @@ export function updateInfoUser(infoUser) {
         try {
             const response = await fetch(`${URL_BASE}/updateInfoUser`,
                 {
-                    method: 'PUT',
+                    method: 'POST',
                     mode: 'cors',
                     headers: {
                         'Content-Type': 'application/json'
@@ -44,7 +46,6 @@ export function updateInfoUser(infoUser) {
                     body: JSON.stringify(infoUser)
                 }
             )
-            const id = await response.text()
             dispatch(success({successful: "Cambio realizado con éxito"}));
         } catch (error) {
             dispatch(failure({error: "A ocurrido un problema"}))

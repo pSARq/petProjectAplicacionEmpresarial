@@ -27,11 +27,12 @@ class UseCaseVotarTest {
         MapperUtil mapperUtils = new MapperUtil();
         votoRepository = mock(VotoRepository.class);
         answerRepository = mock(AnswerRepository.class);
+        useCaseDeleteVoto = mock(UseCaseDeleteVoto.class);
         useCaseVotar = new UseCaseVotar(votoRepository, answerRepository, mapperUtils, useCaseDeleteVoto);
     }
 
     @Test
-    void votar() {
+    void saveVoto() {
 
         Voto voto = new Voto();
         voto.setId("idVoto");
@@ -70,5 +71,50 @@ class UseCaseVotarTest {
         verify(answerRepository).findById(voto.getAnswerId());
         verify(votoRepository).save(any());
         verify(votoRepository).findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId());
+    }
+
+    @Test
+    void updateVoto() {
+
+        Voto voto = new Voto();
+        voto.setId("idVoto");
+        voto.setUserId("idUser");
+        voto.setQuestionId("idQuestion");
+        voto.setAnswerId("idAnswer");
+
+        VotoDTO dto = new VotoDTO();
+        dto.setId("idVoto");
+        dto.setUserId("idUser");
+        dto.setQuestionId("idQuestion");
+        dto.setAnswerId("idAnswer");
+
+        Answer answer = new Answer();
+        answer.setId("idAnswer");
+        answer.setQuestionId("idQuestion");
+        answer.setAnswer("respuesta");
+        answer.setPosition(0);
+
+        when(answerRepository.findById(voto.getAnswerId())).thenReturn(Mono.just(answer));
+        when(answerRepository.save(any())).thenReturn(Mono.just(answer));
+
+        when(votoRepository.findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId()))
+                .thenReturn(Mono.just(voto));
+        when(votoRepository.save(any())).thenReturn(Mono.just(voto));
+
+        when(useCaseDeleteVoto.apply(voto)).thenReturn(Mono.just(answer.getId()));
+
+
+        StepVerifier.create(useCaseVotar.apply(dto))
+                .expectNextMatches(id -> {
+                    assert id.equals("idAnswer");
+                    return true;
+                })
+                .verifyComplete();
+
+        verify(answerRepository).save(any());
+        verify(answerRepository, times(2)).findById(voto.getAnswerId());
+        verify(votoRepository, times(2)).save(any());
+        verify(votoRepository).findByQuestionIdAndUserId(voto.getQuestionId(), voto.getUserId());
+        verify(useCaseDeleteVoto).apply(voto);
     }
 }

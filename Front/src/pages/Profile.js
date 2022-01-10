@@ -19,9 +19,8 @@ const Profile = ({ dispatch, loading, email, infoUser, redirect, successful, has
   }
   
   const onSubmit = (data) => {
-    data.userId = user.uid;
-    data.email = email
     data.id = infoUser.id
+    data.userId = user.uid;
     data.name = name
     data.lastName = lastName
     dispatch(updateInfoUser(data));
